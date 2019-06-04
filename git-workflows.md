@@ -4,7 +4,7 @@ But each and every project starts small...
 
 ## Single-User Workflows
 When you start a project, you're the only person contributing to it, so you know exactly what you're going to do.
-So, there is no apparent reason to use anything other than an eternal loop of three steps:
+So, there is no (apparent) reason to use anything but an eternal loop of three steps:
 
 1. Make a change
 2. Stage it
