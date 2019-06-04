@@ -7,8 +7,12 @@ When you start a project, you're the only person contributing to it, so you know
 So, there is no (apparent) reason to use anything but an eternal loop of three steps:
 
 1. Make a change
-2. Stage it
-3. Commit
+2. Stage it (`git add`)
+3. Commit (`git commit`)
+
+If you need to make a minor change to the latest commit, you can do so with `git commit --amend`
+
+
 
 ### Pros
 + Unlimited "undo"
