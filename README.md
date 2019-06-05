@@ -9,3 +9,5 @@ We're talking about _the way_ developers use Git.
 In this lesson you will learn about several workflows that use Git for tracking changes.
 By the end of the lesson, you will be able to identify which workflow best suits
 your project and style.
+
+Let's begin with a simple [Markdown primer](./markdown-primer.md)!
