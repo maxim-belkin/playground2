@@ -7,13 +7,8 @@ When you start a project, you are the only person contributing to it, so you hav
 So, there is no reason (at least an apparent one) to use anything but an eternal loop of three steps:
 
 1. Make a change in your working directory
-2. Stage it (`<insert git command>`)
-3. Commit (`<insert git command>`)
-
-<!-- Please make changes requested above and commit them to the repository -->
-
-If you need to make a minor change to the latest commit, you can do so with `git commit --amend`.
-
+2. Stage it (`git ...`)
+3. Commit (`git ...`)
 
 ### Pros
 + Unlimited "undo"
