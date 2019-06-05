@@ -16,6 +16,4 @@ So, there is no reason (at least an apparent one) to use anything but an eternal
 ### Cons
 - No backups
 
-### TODO
 
-- Add a 'saw blade' change-add-commit image
