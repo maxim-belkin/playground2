@@ -72,6 +72,7 @@ That's fantastic! Just a few notes before we go further:
 
 Can you work on two big changes to you projects at the same time?
 If you answer "yes", describe the procedure.
+If you answer "no", explain why.
 
 ## More developers
 
