@@ -28,8 +28,13 @@ Solution 2. Save the repository (`.git` directory) with Git:
    cd /path/to/repo
    git push file:///Users/username/backups/my-repository.git
    ```
-4. (Optional) For convenience, we can create a remote called 'backup' to easily back up our repo:
+4. (Optional) For convenience, let's create a remote called 'backup' to easily back up our repository:
    ```
    git remote add backup file:///Users/username/backups/my-repository.git
    git push backup
+   ```
+5. (Optional) Instruct Git to give us a hint when our repo is to far ahead of the backup.
+   To see the effect, execute `git status` before and after the following command:
+   ```
+   git branch -u backup/master
    ```
