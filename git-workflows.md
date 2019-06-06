@@ -34,7 +34,7 @@ fixing a typo or reformatting a paragraph -- you can do so with `git commit --am
   Add the second Git command (`git ...`) above and amend the last commit.
 
 
-## "Minor" request
+### "Minor" request
 
 Sometimes we start working on something and then either stumble upon a bug that
 has to be urgently fixed or receive a request from our advisor to (quickly) do
@@ -68,7 +68,7 @@ That's fantastic! Just a few notes before we go further:
 4. To see the list of stashes, use `git stash list `.
 5. To drop an obsolete stash, use `git stash drop ...`
 
-## Question
+### Question
 
 Can you work on two big changes to you projects at the same time?
 If you answer "yes", describe the procedure.
