@@ -67,3 +67,13 @@ That's fantastic! Just a few notes before we go further:
   ```
 4. To see the list of stashes, use `git stash list `.
 5. To drop an obsolete stash, use `git stash drop ...`
+
+## Question
+
+Can you work on two big changes to you projects at the same time?
+If you answer "yes", describe the procedure.
+
+## More developers
+
+A natural progression for any project is to gain first new members -- your co-workers, friends, etc.
+So, let's have a look at how this progression will affect out project.
