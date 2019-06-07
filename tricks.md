@@ -1,4 +1,4 @@
-## Local back up
+## Local "GitHub"
 
 Unfortunately, version control can not prevent accidental deletion of repositories.
 To prevent such accidental loses we need backups. Let's discuss how we can do that on our own machine.
