@@ -27,19 +27,19 @@ Solution 2. Save the repository (`.git` directory) with Git:
   Note, that you **can** use environment variables (such as `$HOME`) as long as they are expanded to absolute path.
    ```
    cd /path/to/repo
-   git push file:///Users/username/backups/my-repository.git master:master
+   git push file://$HOME/Desktop/backup.git master:master
    ```
    Here we're pushing our local branch `master` (the left "master" in `master:master`) to the remote branch `master` in specified repository.
    When pushing branch to a branch with the same name such as `master:master`, we can simply say `master`.
    ```
-   git push file:///Users/username/backups/my-repository.git master
+   git push file://$HOME/Desktop/backup.git master
    ```
    Nice! This is much better! However, Git still requires us to say which branch we are pushing.
    Wouldn't it be nice to simplify this? Absolutely! Let's do this!
 4. For convenience, let's first create a shortcut so that we don't have to enter the full path to the repository each time.
    For that purpose we can create a remote called 'backup':
    ```
-   git remote add backup file:///Users/username/backups/my-repository.git
+   git remote add backup file://$HOME/Desktop/backup.git
    ```
 5. Now, let's instruct Git to give us a hint when our repo is to far ahead of the backup.
    To see the effect, execute `git status` before and after the following command:

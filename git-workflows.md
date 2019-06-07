@@ -58,7 +58,7 @@ Let's try it out with the following exercise:
   4. Commit the change
   5. Return to editing `.gitignore` with `git stash pop`. Commit the change when you are done.
 
-That's fantastic! Just a few notes before we go further:
+That's fantastic! A few notes before we go further:
 
 1. If you started working on a NEW file that has not been committed to the repository, use the `-u` flag: `git stash -u`.
 2. If you need to stash the file that Git ignores, use the `-a` flag: `git stash -a`.
@@ -85,7 +85,7 @@ A natural progression for any project is to gain first new members -- your co-wo
 So, let's have a look at how this progression will affect out project.
 
 To simulate the scenario in which we have a second co-maintainer, let's first create a local backup of our repository.
-Do steps 1 through 3 of "Local GitHub" section in [tricks.md](./tricks.md)
+Do steps 1 through 4 of "Local GitHub" section in [tricks.md](./tricks.md)
 
 Now that we have our repository in our local "GitHub", we can share its location with our "collaborator".
 The first thing that collaborator does is clones it to his computer.
@@ -94,11 +94,11 @@ Execute:
 
 ```
 cd ..
-git clone file:///Path/to/local/github/playground playground-collaborator
-cd playground-collaborator
+git clone file://$HOME/Desktop/backup collaborator
+cd collaborator
 ```
 
-The above commands will clone the repository to the directory called `playground-collaborator`.
+The above commands will clone the repository to the directory called `collaborator`.
 Now, let's change our name and email address in that repository only.
 Note, you would not have to do this in a real-life scenario.
 
@@ -127,11 +127,11 @@ add a line that reads "- Deal with pulling conflicts". Add and commit the change
 Let us now try and push the changes to our "local GitHub":
 
 ```
-$ git push file:///Users/mbelkin/SWC/itpf_2019/playground-backup master
+$ git push file://$HOME/Desktop/backup.git master
 
-To file:///Users/mbelkin/SWC/itpf_2019/playground-backup
+To file:///Users/mbelkin/Desktop/backup.git
  ! [rejected]        master -> master (non-fast-forward)
-error: failed to push some refs to 'file:///Users/mbelkin/SWC/itpf_2019/playground-backup'
+error: failed to push some refs to 'file:///Users/mbelkin/Desktop/backup.git'
 hint: Updates were rejected because the tip of your current branch is behind
 hint: its remote counterpart. Integrate the remote changes (e.g.
 hint: 'git pull ...') before pushing again.
@@ -144,11 +144,11 @@ this case this is `todo.md`), mark it as resolved with `git add`, and finalize t
 pull with `git commit`. You will end up with a history that looks like so:
 
 ```
-$ git pull file:///Users/mbelkin/SWC/itpf_2019/playground-backup master
+$ git pull file://$HOME/Desktop/backup.git master
 
 $ git log --oneline --decorate --graph -4
 
-*   a4d328a (HEAD -> master) Merge branch 'master' of file:///Users/mbelkin/SWC/itpf_2019/playground-backup
+*   a4d328a (HEAD -> master) Merge branch 'master' of file:///Users/mbelkin/Desktop/backup.git
 |\
 | * 22e41c8 [Collaborator] Updating todo
 * | 036898d [Main repo]: Updating todo
@@ -176,7 +176,7 @@ If you ran the above commands, let's undo them:
 Now, let's pull the changes from our local GitHub once again, but this time using the `--rebase` flag:
 
 ```
-git pull --rebase file:///Users/mbelkin/SWC/itpf_2019/playground-backup master
+git pull --rebase file://$HOME/Desktop/backup.git master
 ```
 
 We will again encounter a conflict. Now, we have to:
@@ -206,4 +206,128 @@ Consider using `pull --rebase` if you prefer to have linear commit history.
 Note that we put "abolutely the same" in quotes.
 The reason we did that is because the order of lines in the resulting files with resolved conflicts is different.
 
+### Pros
++ Unlimited "undo"
++ Backups: Every developer has a copy of the project
++ Developers can work on different parts of the project
 
+### Cons
+- All developers are "local" (because they have to be able to access the "backup" repository)
+- Every developer has to resolve conflicts when syncing their work with others.
+
+Because these conflicts have the propensity to become more and more complex as more changes are made by the developers,
+such workflow encourages frequent syncing with the shared "backup" directory.
+
+
+## More developers: GitHub
+
+As other developers join your project, it becomes more and more challenging 
+to use local directory for syncing work among them (not to mention
+frequent and cumbersome conflicts). Moreover, remote developers can not join a project that is stored on your hard drive.
+
+To allow remote developers contribute to a project,
+people use web-based hosting services such as GitHub, BitBucket, GitLab, and others.
+They work exactly as our "Local GitHub" directory we created previously.
+
+**Please create an account on GitHub if you don't have one.**
+
+Let's move "local GitHub" repository to the actual GitHub.
+
+- Login to GitHub and create a new (empty) repository.
+- Navigate to your local "playgroud" folder and execute:
+
+  ```
+  git remote add github https://github.com/your-username/playground.git
+  git push github master
+  ```
+
+Now, we have a copy of our repository on GitHub and remote collaborators can use it and contribute to the project remotely.
+
+### Exercise
+
+In Collaborator Jones' repository:
+ - add a remote called 'github'.
+ - Rename `todo.md` to `TODO.md`, add it to the staging area, commit the change.
+ - Push to GitHub
+
+In the main "Playground" repository:
+ - pull the changes from GitHub
+
+
+
+## Git Branches
+
+Now our project is becoming more and more popular so people start to care if we break things.
+Therefore, we want to "hide" the development process.
+We could work on the project in a separate folder/repository but it would be cumbersome to keep track of folders in such a case.
+For that purpose we can use branches!
+
+A branch in Git is a name for a sequence of related commits.
+So far, we've dealt with one branch only -- master.
+Lets' create a branch:
+
+```
+git branch commands
+```
+
+We've created a branch but we still belong to `master`.
+Let's switch to it:
+
+```
+git checkout commands
+```
+
+Now, let's create a commit in this new branch:
+
+Let's create a file called `git-commands.md` and record (some or all of) the commands that we've learned so far.
+
+Commit `git-commands.md` to the repository
+
+This file is an example of a "side project" that in real life can be a new feature or something else.
+
+Development in this branch is completely separate from the main `master` branch. Let's see it for ourselves!
+Let's see the last three commit in the current (`commands`) branch and compare it to `master` branch.
+
+```
+git log --oneline -3
+git checkout master
+git log --oneline -3
+```
+
+These are different!
+Moreover, file `git-commands.md` does not exist in this branch!
+
+Let's push it back to GitHub:
+
+```
+git push github master commands
+```
+
+This time, I'm pushing two branches: `master` and `commands`
+
+So, what do we do once we're happy with the changes in the `commands` branch? Merge it into `master`!
+
+```
+git checkout master # Just to be on a safe side
+git merge commands
+git log --oneline --decorate --graph --all
+```
+
+This creates a merge commit, a commit with two parents.
+
+So, whenever we need to work on a complex change, we should create a branch for it!
+
+## Exercise
+
+Create a new branch called `fruits`, switch to this branch  and create a new file called `fruits.md` containing a list of your favorite fruits.
+Commit this file to the repository
+
+
+## Forks
+
+- Fork your neighbor's repository
+- Clone it to your computer
+- Make a change in your local copy in a NEW branch
+- Commit this change
+- Push it back to YOUR fork
+- Submit a pull request
