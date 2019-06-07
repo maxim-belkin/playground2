@@ -2,6 +2,7 @@
 Choosing the right Git workflow is a very important step for any (computational) project.
 But each and every project starts small.
 
+
 ## Single-User Workflows
 When you start a project, you are the only person contributing to it, so you have full control over what happens next.
 So, there is no reason (at least an apparent one) to use anything but an eternal loop of three steps:
@@ -34,19 +35,21 @@ fixing a typo or reformatting a paragraph -- you can do so with `git commit --am
   Add the second Git command (`git ...`) above and amend the last commit.
 
 
-### "Minor" request
+## "Minor" request
 
-Sometimes we start working on something and then either stumble upon a bug that
+Sometimes we start working on new change and then stumble upon a bug that
 has to be urgently fixed or receive a request from our advisor to (quickly) do
-something else. In such a situation we need to put what we've been working on
-aside, do the change, and then come back to where we were before. For that purpose Git provides a command called `stash`. So, the workflow here looks as follows:
+something else.
+In such a situation we need to put what we've been working on
+aside, do the change, and then come back to where we were before. For that purpose Git provides a command called `stash`. The workflow looks as follows:
 
 1. Make a change to your working directory
-2. Stash the change with `git stash`
+2. Put the changes aside with `git stash`
 3. Make another change to your working directory
 4. Commit the new change
 5. Return to where you were before with `git stash pop`
 
+Let's try it out with the following exercise:
 
 ### Exercise (3 minutes)
   1. Add `*.bad` to `.gitignore` file
@@ -60,6 +63,7 @@ That's fantastic! Just a few notes before we go further:
 1. If you started working on a NEW file that has not been committed to the repository, use the `-u` flag: `git stash -u`.
 2. If you need to stash the file that Git ignores, use the `-a` flag: `git stash -a`.
 3. If you would like to provide a message for the stash, use the full syntax of the `git stash` command:
+
   ```
   git stash push -a -m "Description of your WIP"
   # make some other changes and commit them
@@ -74,6 +78,7 @@ Can you work on two big changes to you projects at the same time?
 If you answer "yes", describe the procedure.
 If you answer "no", explain why.
 
+
 ## More developers
 
 A natural progression for any project is to gain first new members -- your co-workers, friends, etc.
@@ -86,6 +91,7 @@ Now that we have our repository in our local "GitHub", we can share its location
 The first thing that collaborator does is clones it to his computer.
 In our case, let's clone it to a directory right next to our repository.
 Execute:
+
 ```
 cd ..
 git clone file:///Path/to/local/github/playground playground-collaborator
@@ -158,25 +164,30 @@ If you ran the above commands, let's undo them:
 
 1. Move HEAD back to the commit that says "[Main repo]: Updating todo".
    This is commit `036898d` in the image above:
+   
    ```
    git reset --soft 036898d
    ```
 2. Reset the content of the `todo.md` file to what it used to be at the time of `036898d` commit:
+
    ```
    git checkout 036898d -- todo.md
    ```
 Now, let's pull the changes from our local GitHub once again, but this time using the `--rebase` flag:
+
 ```
 git pull --rebase file:///Users/mbelkin/SWC/itpf_2019/playground-backup master
 ```
 
 We will again encounter a conflict. Now, we have to:
+
 1. resolve the conflict
 2. Mark the conflict as resolved with `git add`
 3. And, to finalize the pull, execute:
-```
-git rebase --continue
-```
+
+ ```
+ git rebase --continue
+ ```
 
 Now, let's have a look at the history of our repository:
 
@@ -190,4 +201,9 @@ $ git log --oneline --decorate --graph -4
 ```
 
 Notice that although we had to do "absolutely the same" conflict resolution, the history is now linear, without merge commits.
-Consider using `pull --rebase` if you prefer to linear commit history.
+Consider using `pull --rebase` if you prefer to have linear commit history.
+
+Note that we put "abolutely the same" in quotes.
+The reason we did that is because the order of lines in the resulting files with resolved conflicts is different.
+
+
