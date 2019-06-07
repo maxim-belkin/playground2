@@ -322,6 +322,7 @@ So, whenever we need to work on a complex change, we should create a branch for 
 Create a new branch called `fruits`, switch to this branch  and create a new file called `fruits.md` containing a list of your favorite fruits.
 Commit this file to the repository
 
+TODO: Explain "upstream"
 
 ## Forks
 
