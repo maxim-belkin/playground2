@@ -23,7 +23,8 @@ Solution 2. Save the repository (`.git` directory) with Git:
    When we do so, we have to:
     - use full (absolute) path to the backup folder
     - prefix this full path with `file://`.
-  Because of these two requirements, the "URL" will look like so: `file:///Path/to/backup`
+  Because of these two requirements, the "URL" will look like so: `file:///Path/to/backup`.
+  Note, that you **can** use environment variables (such as `$HOME`) as long as they are expanded to absolute path.
    ```
    cd /path/to/repo
    git push file:///Users/username/backups/my-repository.git master:master
